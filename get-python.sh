@@ -1,21 +1,17 @@
 #!/bin/bash
 
-# The script is designed to install a given Python interpreter in
-# the system. Sometimes you need to test your software using old
-# Python interpreter and you can't find it in the repository. In
-# that case the script will help you to download, compile and
-# install old Python versions in the system.
+# The script is designed to help you download, compile and install
+# a given Python interpreter into your system. Sometimes you need
+# to test your software in old Python envs and you can't fine it
+# in your repo. In that case you have no choice except compile
+# Python from the sources.
 #
-# Copyright (c) 2014 by Igor Kalnitsky <igor@kalnitsky.org>
+# Usage:
+#
+#   $ bash ./get-python.sh <url-to-tgz>
+#
+# Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
 # Licensed under 3-clause BSD.
-#
-
-PYTHON_SOURCES=(
-    "https://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz"
-    "https://www.python.org/ftp/python/3.2.5/Python-3.2.5.tgz"
-    "https://www.python.org/ftp/python/3.3.5/Python-3.3.5.tgz"
-)
-
 
 DEB_REQUIREMENTS=(
     "wget"
@@ -31,7 +27,7 @@ DEB_REQUIREMENTS=(
 function main {
     install_packages "${DEB_REQUIREMENTS[@]}"
 
-    for download_url in ${PYTHON_SOURCES[@]}; do
+    for download_url in ${@}; do
         local tarball=`basename $download_url`
         local source_=`basename $tarball .tgz`
 
@@ -99,4 +95,4 @@ function install {
 }
 
 
-main
+main ${@}

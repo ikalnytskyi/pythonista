@@ -3,11 +3,11 @@ Pythonista - the Docker image
 
 Pythonista is a [Docker] image for real Python developers. That means
 you can find here most popular Python interpreters and tests your
-application in all of them.
+application in all of them. The idea for image was born when I needed
+to test some code in Python 2.6 environment and my workstation couldn't
+handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 
-The idea for image was born when I needed to test some code in Python 2.6
-environment and my workstation couldn't handle it, since Debian Jessie
-doesn't have Python 2.6 in the repository.
+[Docker]: https://docker.com/
 
 
 How To Use?
@@ -25,12 +25,14 @@ another containers:
 
 and enjoy `bash` session within container.
 
+[Docker Hub]: https://hub.docker.com/
 
-Dox
----
+
+Tox & Dox
+---------
 
 It's very convenient to run unittests inside Pythonista container with
-[tox]. Moreover, there's a tool to doing it much easier - [dox].
+[tox]. Moreover, there's a tool to do it much easier - [dox].
 
 All you need is just create a `dox.yml` file with next content:
 
@@ -39,17 +41,21 @@ All you need is just create a `dox.yml` file with next content:
 
 and runs `dox` inside your source tree.
 
-
-Technical Specification
------------------------
-
-| Thing            | Status                                |
-|:----------------:|:-------------------------------------:|
-| Operating System | Debian Jessie (Testing)               |
-| CPython Versions | 2.6.8 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1 |
+[tox]: https://tox.readthedocs.org/
+[dox]: https://github.com/stackforge/dox
 
 
-[Docker]:       https://docker.com/
-[Docker Hub]:   https://hub.docker.com/
-[tox]:          https://tox.readthedocs.org/
-[dox]:          https://github.com/stackforge/dox
+Feedback
+--------
+
+It's important for me to get user's feedback, so please don't hesitate
+to suggest improvements or report bugs via [GitHub Issue].
+
+[GitHub Issue]: https://github.com/ikalnitsky/pythonista/issues
+
+
+Image Info
+----------
+
+* OS :: Debian Jessie (Testing)
+* CPython :: 2.6.8 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1

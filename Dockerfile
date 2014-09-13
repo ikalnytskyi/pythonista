@@ -1,13 +1,14 @@
 #######################################################################
-# Dockerfile to built container image for real Pythonistas!
+# Dockerfile for building Pythonista docker image.
 #
-# What that means? That means the container includes all popular
-# Python interpreters, pip and virtualbox so it very usefull to
-# test your software within pythonista container!
+# Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
+# Licensed under 3-clause BSD
+#
+# See https://github.com/ikalnitsky/pythonista for details.
 #######################################################################
 
 FROM        debian:jessie
-MAINTAINER  Igor Kalnitsky  <igor@kalnitsky.org>
+MAINTAINER  Igor Kalnitsky <igor@kalnitsky.org>
 
 # install Python 2.7 and Python 3.4 from official repos
 RUN apt-get update
