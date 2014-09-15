@@ -13,11 +13,15 @@
 # Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
 # Licensed under 3-clause BSD.
 
-DEB_REQUIREMENTS=(
+DEB_BUILD_REQUIREMENTS=(
     "wget"
-    "tar"
     "gcc"
     "make"
+    "zlib1g-dev"
+    "libsqlite3-dev"
+    "libreadline-dev"
+    "libssl-dev"
+    "liblzma-dev"
 )
 
 
@@ -25,7 +29,7 @@ DEB_REQUIREMENTS=(
 # A sorf of entry point - download, compile and install given Pythons.
 #
 function main {
-    install_packages "${DEB_REQUIREMENTS[@]}"
+    install_packages "${DEB_BUILD_REQUIREMENTS[@]}"
 
     for download_url in ${@}; do
         local tarball=`basename $download_url`
@@ -38,6 +42,8 @@ function main {
 
         rm -rf $download_url $tarball $source_
     done
+
+    remove_packages "${DEB_BUILD_REQUIREMENTS[@]}"
 }
 
 #
@@ -47,6 +53,15 @@ function main {
 #
 function install_packages {
     apt-get -y install "${@}"
+}
+
+#
+# Remove a given packages from the system.
+#
+# $@ - array of packages to be removed
+#
+function remove_packages {
+    apt-get -y purge "${@}"
 }
 
 
