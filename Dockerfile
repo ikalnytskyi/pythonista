@@ -10,16 +10,13 @@
 FROM        debian:jessie
 MAINTAINER  Igor Kalnitsky <igor@kalnitsky.org>
 
-# install Python 2.7 and Python 3.4 from official repos
-RUN apt-get update
-RUN apt-get -y install python2.7-dev
-RUN apt-get -y install python3.4-dev
-
-
-# compile Python 2.6, Python 3.2 and Python 3.3 from sources
 ADD get-python.sh  /var/tmp/get-python.sh
 
-RUN ["/bin/bash", "/var/tmp/get-python.sh", \
-        "https://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz", \
-        "https://www.python.org/ftp/python/3.2.5/Python-3.2.5.tgz", \
-        "https://www.python.org/ftp/python/3.3.5/Python-3.3.5.tgz"]
+# Install Python interpreters.
+#
+# NOTE: We want to install 2.7 and 3.4 first because we want to
+#       make more rational default for pip and python.
+RUN ["/bin/bash", "/var/tmp/get-python.sh", "2.7.8", "3.4.1", "2.6.9", "3.1.5", "3.2.5", "3.3.5"]
+
+# Install usefull tools
+RUN pip install tox virtualenv

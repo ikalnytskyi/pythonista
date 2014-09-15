@@ -8,15 +8,22 @@
 #
 # Usage:
 #
-#   $ bash ./get-python.sh <url-to-tgz>
+#   $ bash ./get-python.sh <py_version>...
+#
+# Note: the script has a lot of abstract function because in the
+#       future it may be easier to port it to RH-based systems.
 #
 # Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
 # Licensed under 3-clause BSD.
 
+DEB_REQUIREMENTS=(
+    "libsqlite3-0"
+)
+
 DEB_BUILD_REQUIREMENTS=(
-    "wget"
-    "gcc"
-    "make"
+    "curl"
+    "git-core"
+    "build-essential"
     "zlib1g-dev"
     "libsqlite3-dev"
     "libreadline-dev"
@@ -29,22 +36,18 @@ DEB_BUILD_REQUIREMENTS=(
 # A sorf of entry point - download, compile and install given Pythons.
 #
 function main {
+    install_packages "${DEB_REQUIREMENTS[@]}"
     install_packages "${DEB_BUILD_REQUIREMENTS[@]}"
+    install_pyenv
 
-    for download_url in ${@}; do
-        local tarball=`basename $download_url`
-        local source_=`basename $tarball .tgz`
-
-        download    $download_url
-        unpack      $tarball
-        compile     $source_
-        install     $source_
-
-        rm -rf $download_url $tarball $source_
+    for pyversion in ${@}; do
+        install_python $pyversion
     done
 
     remove_packages "${DEB_BUILD_REQUIREMENTS[@]}"
+    clean_packages
 }
+
 
 #
 # Install a given packages to the system.
@@ -52,8 +55,30 @@ function main {
 # $@ - array of packages to be installed
 #
 function install_packages {
+    apt-get update
     apt-get -y install "${@}"
 }
+
+
+#
+# Install and configure the PyEnv tool.
+#
+function install_pyenv {
+    git clone "git://github.com/yyuu/pyenv.git"
+    bash pyenv/plugins/python-build/install.sh
+    rm -rf pyenv
+}
+
+
+#
+# Install a given Python interpreter version.
+#
+# $1 - a Python interpreter version
+#
+function install_python {
+    CFLAGS="-g -O2" python-build "$1" "/usr/local/"
+}
+
 
 #
 # Remove a given packages from the system.
@@ -61,52 +86,17 @@ function install_packages {
 # $@ - array of packages to be removed
 #
 function remove_packages {
-    apt-get -y purge "${@}"
+    apt-get -y purge --auto-remove "${@}"
+    apt-get -y autoremove
 }
 
 
 #
-# Download a given remote file.
+# Remove unused packages.
 #
-# $1 - a URL to file to be downloaded
-#
-function download {
-    wget $1
-}
-
-
-#
-# Unpack a given tarball to the folder with a same name.
-#
-# $1 - a path to the tarball to be unpacked
-#
-function unpack {
-    tar -xzf $1
-}
-
-
-#
-# Compile Python interpreter from a given sources.
-#
-# $1 - a path to python sources
-#
-function compile {
-    pushd $1
-        ./configure
-        make
-    popd
-}
-
-
-#
-# Install Python interpreter from a given folder.
-#
-# $1 - a path to compiled sources
-#
-function install {
-    pushd $1
-        make install
-    popd
+function clean_packages {
+    apt-get autoclean
+    apt-get clean
 }
 
 
