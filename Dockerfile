@@ -18,8 +18,8 @@ RUN apt-get -y install python3.4-dev
 
 # compile Python 2.6, Python 3.2 and Python 3.3 from sources
 ADD get-python.sh  /var/tmp/get-python.sh
-RUN chmod +x /var/tmp/get-python.sh
 
-RUN /var/tmp/get-python.sh "https://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz"
-RUN /var/tmp/get-python.sh "https://www.python.org/ftp/python/3.2.5/Python-3.2.5.tgz"
-RUN /var/tmp/get-python.sh "https://www.python.org/ftp/python/3.3.5/Python-3.3.5.tgz"
+RUN ["/bin/bash", "/var/tmp/get-python.sh", \
+        "https://www.python.org/ftp/python/2.6.8/Python-2.6.8.tgz", \
+        "https://www.python.org/ftp/python/3.2.5/Python-3.2.5.tgz", \
+        "https://www.python.org/ftp/python/3.3.5/Python-3.3.5.tgz"]
