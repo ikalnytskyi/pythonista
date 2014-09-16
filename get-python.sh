@@ -64,10 +64,10 @@ function install_packages {
 # Install and configure the PyEnv tool.
 #
 function install_pyenv {
-    wget --no-check-certificate https://github.com/yyuu/pyenv/archive/master.tar.gz -O pyenv.tar.gz
-    tar -xzf pyenv.tar.gz
+    wget https://github.com/yyuu/pyenv/archive/master.tar.gz
+    tar -xzf master.tar.gz
     bash pyenv-master/plugins/python-build/install.sh
-    rm -rf pyenv-master/ pyenv.tar.gz
+    rm -rf pyenv-master/ master.tar.gz
 }
 
 
@@ -77,7 +77,8 @@ function install_pyenv {
 # $1 - a Python interpreter version
 #
 function install_python {
-    CFLAGS="-g -O2" python-build "$1" "/usr/local/"
+    CFLAGS="-g -O2" python-build "$1" "/opt/python/$1"
+    echo "export PATH=\"\$PATH:/opt/python/$1/bin/\"" >> /etc/profile.d/pythonista.sh
 }
 
 

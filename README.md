@@ -9,12 +9,13 @@ handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 
 [Docker]: https://docker.com/
 
+
 About Image
 -----------
 
-* OS :: Debian Jessie (Testing)
-* CPython :: 2.6.9 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1
-* Env :: pip, virtualenv, tox
+* **OS** - Debian Jessie (Testing)
+* **CPython** - 2.6.9 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1
+* **Env** - pip, virtualenv, tox
 
 
 How To Use?
