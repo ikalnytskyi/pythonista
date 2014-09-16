@@ -9,6 +9,13 @@ handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 
 [Docker]: https://docker.com/
 
+About Image
+-----------
+
+* OS :: Debian Jessie (Testing)
+* CPython :: 2.6.9 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1
+* Env :: pip, virtualenv, tox
+
 
 How To Use?
 -----------
@@ -52,10 +59,3 @@ It's important for me to get user's feedback, so please don't hesitate
 to suggest improvements or report bugs via [GitHub Issue].
 
 [GitHub Issue]: https://github.com/ikalnitsky/pythonista/issues
-
-
-Image Info
-----------
-
-* OS :: Debian Jessie (Testing)
-* CPython :: 2.6.8 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1

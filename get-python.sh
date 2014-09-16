@@ -18,17 +18,17 @@
 
 DEB_REQUIREMENTS=(
     "libsqlite3-0"
+    "libssl1.0.0"
 )
 
 DEB_BUILD_REQUIREMENTS=(
-    "curl"
-    "git-core"
+    "wget"
     "build-essential"
-    "zlib1g-dev"
     "libsqlite3-dev"
     "libreadline-dev"
     "libssl-dev"
-    "liblzma-dev"
+    "zlib1g-dev"
+    "libbz2-dev"
 )
 
 
@@ -64,9 +64,10 @@ function install_packages {
 # Install and configure the PyEnv tool.
 #
 function install_pyenv {
-    git clone "git://github.com/yyuu/pyenv.git"
-    bash pyenv/plugins/python-build/install.sh
-    rm -rf pyenv
+    wget --no-check-certificate https://github.com/yyuu/pyenv/archive/master.tar.gz -O pyenv.tar.gz
+    tar -xzf pyenv.tar.gz
+    bash pyenv-master/plugins/python-build/install.sh
+    rm -rf pyenv-master/ pyenv.tar.gz
 }
 
 

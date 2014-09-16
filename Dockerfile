@@ -16,7 +16,7 @@ ADD get-python.sh  /var/tmp/get-python.sh
 #
 # NOTE: We want to install 2.7 and 3.4 first because we want to
 #       make more rational default for pip and python.
-RUN ["/bin/bash", "/var/tmp/get-python.sh", "2.7.8", "3.4.1", "2.6.9", "3.1.5", "3.2.5", "3.3.5"]
+RUN ["/bin/bash", "/var/tmp/get-python.sh", "2.6.9", "2.7.8", "3.4.1", "3.1.5", "3.2.5", "3.3.5"]
 
 # Install usefull tools
-RUN pip install tox virtualenv
+RUN pip2.7 install tox virtualenv
