@@ -36,21 +36,16 @@ and enjoy `bash` session within container.
 [Docker Hub]: https://hub.docker.com/
 
 
-Tox & Dox
----------
+Unit Tests
+----------
 
-It's very convenient to run unittests inside Pythonista container with
-[tox]. Moreover, there's a tool to do it much easier - [dox].
+It's very convenient to run unit tests inside Pythonista container because
+you can run it using different Python interpreters. For example, with [tox]
+the command might look like:
 
-All you need is just create a `dox.yml` file with next content:
-
-    image: ikalnitsky/pythonista
-    commands: tox
-
-and runs `dox` inside your source tree.
+    $ [sudo] docker run -v /path/to/src/:/src -w /src ikalnitsky/pythonista tox
 
 [tox]: https://tox.readthedocs.org/
-[dox]: https://github.com/stackforge/dox
 
 
 Feedback
