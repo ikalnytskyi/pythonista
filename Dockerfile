@@ -12,16 +12,18 @@ MAINTAINER  Igor Kalnitsky <igor@kalnitsky.org>
 
 ADD get-python.sh  /var/tmp/get-python.sh
 
-# Install Python interpreters.
+# Install CPython interpreters.
 #
-# NOTE: We want to install 2.7 and 3.4 first because we want to
-#       make more rational default for pip and python.
+# NOTE: We're going to install 2.7 and 3.4 first because we want to
+#       make more rational defaults for pip and python.
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
-     "2.7.8", \
-     "3.4.2", \
-     "2.6.9", \
-     "3.2.6", \
-     "3.3.6"  ]
+     "2.7.8",      \
+     "3.4.2",      \
+     "2.6.9",      \
+     "3.2.6",      \
+     "3.3.6",      \
+     "pypy-2.4.0", \
+     "pypy3-2.4.0" ]
 
 # Unfortunately, there's no way (at least I don't know one) to
 # change PATH variable inside container. The only way I know is
@@ -33,6 +35,8 @@ ENV PATH $PATH:/opt/python/3.4.2/bin
 ENV PATH $PATH:/opt/python/2.6.9/bin
 ENV PATH $PATH:/opt/python/3.2.6/bin
 ENV PATH $PATH:/opt/python/3.3.6/bin
+ENV PATH $PATH:/opt/python/pypy-2.4.0/bin
+ENV PATH $PATH:/opt/python/pypy3-2.4.0/bin
 
 # Install first-class tools
 RUN pip install tox virtualenv

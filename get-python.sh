@@ -19,6 +19,8 @@
 DEB_REQUIREMENTS=(
     "libsqlite3-0"
     "libssl1.0.0"
+    "libexpat1"
+    "libffi6"
 )
 
 DEB_BUILD_REQUIREMENTS=(
@@ -29,6 +31,9 @@ DEB_BUILD_REQUIREMENTS=(
     "libssl-dev"
     "zlib1g-dev"
     "libbz2-dev"
+    "libncurses5-dev"
+    "libffi-dev"
+    "libexpat-dev"
 )
 
 
