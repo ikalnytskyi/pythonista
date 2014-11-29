@@ -14,7 +14,7 @@ About Image
 -----------
 
 * **OS** - Debian Jessie (Testing)
-* **CPython** - 2.6.9 / 2.7.8 / 3.2.5 / 3.3.5 / 3.4.1
+* **CPython** - 2.6.9 / 2.7.8 / 3.2.6 / 3.3.6 / 3.4.2
 * **Env** - pip, virtualenv, tox
 
 
