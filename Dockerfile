@@ -17,7 +17,7 @@ ADD get-python.sh  /var/tmp/get-python.sh
 # NOTE: We're going to install 2.7 and 3.4 first because we want to
 #       make more rational defaults for pip and python.
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
-     "2.7.8",      \
+     "2.7.9",      \
      "3.4.2",      \
      "2.6.9",      \
      "3.2.6",      \
@@ -30,7 +30,7 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 # to setup it directly in Dockerfile, but it's awful when the
 # PATH should be changed dynamically based on some third-party
 # input. But I have no choice... :(
-ENV PATH $PATH:/opt/python/2.7.8/bin
+ENV PATH $PATH:/opt/python/2.7.9/bin
 ENV PATH $PATH:/opt/python/3.4.2/bin
 ENV PATH $PATH:/opt/python/2.6.9/bin
 ENV PATH $PATH:/opt/python/3.2.6/bin
