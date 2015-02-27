@@ -18,11 +18,11 @@ ADD get-python.sh  /var/tmp/get-python.sh
 #       make more rational defaults for pip and python.
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
      "2.7.9",      \
-     "3.4.2",      \
+     "3.4.3",      \
      "2.6.9",      \
      "3.2.6",      \
      "3.3.6",      \
-     "pypy-2.4.0", \
+     "pypy-2.5.0", \
      "pypy3-2.4.0" ]
 
 # Unfortunately, there's no way (at least I don't know one) to
@@ -31,11 +31,11 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 # PATH should be changed dynamically based on some third-party
 # input. But I have no choice... :(
 ENV PATH $PATH:/opt/python/2.7.9/bin
-ENV PATH $PATH:/opt/python/3.4.2/bin
+ENV PATH $PATH:/opt/python/3.4.3/bin
 ENV PATH $PATH:/opt/python/2.6.9/bin
 ENV PATH $PATH:/opt/python/3.2.6/bin
 ENV PATH $PATH:/opt/python/3.3.6/bin
-ENV PATH $PATH:/opt/python/pypy-2.4.0/bin
+ENV PATH $PATH:/opt/python/pypy-2.5.0/bin
 ENV PATH $PATH:/opt/python/pypy3-2.4.0/bin
 
 # Install first-class tools
