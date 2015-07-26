@@ -2,8 +2,8 @@ Pythonista - the Docker image
 =============================
 
 Pythonista is a [Docker] image for real Python developers. That means
-you can find here most popular Python interpreters and tests your
-application in all of them. The idea for image was born when I needed
+you can find here most popular Python interpreters and test your
+application in all of them. The idea for the image was born when I needed
 to test some code in Python 2.6 environment and my workstation couldn't
 handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 
