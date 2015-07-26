@@ -10,46 +10,83 @@
 #
 #   $ bash ./get-python.sh <py_version>...
 #
-# Note: the script has a lot of abstract function because in the
+# Note: the script has a lot of abstract functions because in the
 #       future it may be easier to port it to RH-based systems.
 #
 # Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
 # Licensed under 3-clause BSD.
 
-DEB_REQUIREMENTS=(
-    "libsqlite3-0"
-    "libssl1.0.0"
-    "libexpat1"
-    "libffi6"
-)
 
-DEB_BUILD_REQUIREMENTS=(
-    "wget"
-    "build-essential"
-    "libsqlite3-dev"
-    "libreadline-dev"
-    "libssl-dev"
-    "zlib1g-dev"
-    "libbz2-dev"
-    "libncurses5-dev"
-    "libffi-dev"
-    "libexpat-dev"
-)
+# Get distribution name to distinguish between `debian`, `centos`, etc.
+OSNAME=$(cat /etc/*-release | grep ^ID= | cut -d'=' -f 2 | tr -d '"')
 
+#
+# Define distribution specific package requirements.
+#
+case ${OSNAME} in
+
+    "debian")
+        REQUIREMENTS=(
+            "libsqlite3-0"
+            "libssl1.0.0"
+            "libexpat1"
+            "libffi6"
+        )
+
+        BUILD_REQUIREMENTS=(
+            "wget"
+            "build-essential"
+            "libsqlite3-dev"
+            "libreadline-dev"
+            "libssl-dev"
+            "zlib1g-dev"
+            "libbz2-dev"
+            "libncurses5-dev"
+            "libffi-dev"
+            "libexpat-dev"
+        )
+        ;;
+
+    "centos")
+        REQUIREMENTS=(
+            "sqlite"
+            "openssl-libs"
+            "expat"
+            "libffi"
+            "python-pip"
+        )
+
+        BUILD_REQUIREMENTS=(
+            "wget"
+            "sqlite-devel"
+            "readline-devel"
+            "openssl-devel"
+            "zlib-devel"
+            "bzip2-devel"
+            "ncurses-devel"
+            "libffi-devel"
+            "expat-devel"
+        )
+        ;;
+    *)
+        echo "ERROR: Unsupported OS type: ${OSNAME}"
+        exit 1
+        ;;
+esac
 
 #
 # A sorf of entry point - download, compile and install given Pythons.
 #
 function main {
-    install_packages "${DEB_REQUIREMENTS[@]}"
-    install_packages "${DEB_BUILD_REQUIREMENTS[@]}"
+    install_packages "${REQUIREMENTS[@]}"
+    install_packages "${BUILD_REQUIREMENTS[@]}"
     install_pyenv
 
-    for pyversion in ${@}; do
-        install_python $pyversion
+    for pyversion in "${@}"; do
+        install_python "$pyversion"
     done
 
-    remove_packages "${DEB_BUILD_REQUIREMENTS[@]}"
+    remove_packages "${BUILD_REQUIREMENTS[@]}"
     clean_packages
 }
 
@@ -60,8 +97,18 @@ function main {
 # $@ - array of packages to be installed
 #
 function install_packages {
-    apt-get update
-    apt-get -y install "${@}"
+case ${OSNAME} in
+    "debian")
+        apt-get update
+        apt-get -y install "${@}"
+        ;;
+    "centos")
+        yum -y install epel-release
+        yum update
+        yum -y groupinstall development
+        yum -y install "${@}"
+        ;;
+esac
 }
 
 
@@ -86,25 +133,38 @@ function install_python {
     echo "export PATH=\"\$PATH:/opt/python/$1/bin/\"" >> /etc/profile.d/pythonista.sh
 }
 
-
 #
-# Remove a given packages from the system.
+# Remove given packages from the system.
 #
 # $@ - array of packages to be removed
 #
 function remove_packages {
-    apt-get -y purge --auto-remove "${@}"
-    apt-get -y autoremove
+    case ${OSNAME} in
+        "debian")
+            apt-get -y purge --auto-remove "${@}"
+            apt-get -y autoremove
+            ;;
+        "centos")
+            yum -y erase "${@}"
+            yum -y autoremove
+            ;;
+    esac
 }
-
 
 #
 # Remove unused packages.
 #
 function clean_packages {
-    apt-get autoclean
-    apt-get clean
+    case ${OSNAME} in
+        "debian")
+            apt-get autoclean
+            apt-get clean
+            ;;
+        "centos")
+            yum -y clean all
+            ;;
+    esac
 }
 
 
-main ${@}
+main "${@}"
