@@ -54,13 +54,13 @@ Build the image locally
 You are also welcome to build and tweak the testing image locally using
 provided Dockerfiles.
 
-To build Pythonista Docker image based on **Debian**:
+To build Pythonista Docker image (by default based on **Debian**):
 
 ```
-docker build -f Dockerfile.debian -t pythonista-deb
+docker build -t pythonista-deb
 ```
 
-To build Pythonista Docker image based on **CentOS**:
+To build Pythonista Docker image based on **CentOS** use `Dockerfile.centos`:
 
 ```
 docker build -f Dockerfile.centos -t pythonista-yum
