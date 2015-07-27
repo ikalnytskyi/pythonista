@@ -17,11 +17,11 @@ ADD get-python.sh  /var/tmp/get-python.sh
 # NOTE: We're going to install 2.7 and 3.4 first because we want to
 #       make more rational defaults for pip and python.
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
-     "2.6.9",             \
      "2.7.10",            \
+     "3.4.3",             \
+     "2.6.9",             \
      "3.2.6",             \
      "3.3.6",             \
-     "3.4.3",             \
      "pypy-portable-2.6.0", \
      "pypy3-portable-2.4" ]
 
