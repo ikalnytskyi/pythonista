@@ -2,8 +2,8 @@ Pythonista - the Docker image
 =============================
 
 Pythonista is a [Docker] image for real Python developers. That means
-you can find here most popular Python interpreters and tests your
-application in all of them. The idea for image was born when I needed
+you can find here most popular Python interpreters and test your
+application in all of them. The idea for the image was born when I needed
 to test some code in Python 2.6 environment and my workstation couldn't
 handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 
@@ -13,8 +13,8 @@ handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 About Image
 -----------
 
-* **OS** - Debian Jessie (Testing)
-* **CPython** - 2.6.9 / 2.7.10 / 3.2.6 / 3.3.6 / 3.4.3
+* **OS** - Debian 8 (Jessie) or CentOS 7
+* **CPython** - 2.6.9 / 2.7.9 / 3.2.6 / 3.3.6 / 3.4.3
 * **PyPy** - PyPy 2.6.0 (based on 2.7.9) / PyPy3 2.4.0 (based on 3.2.5)
 * **Env** - pip, virtualenv, tox
 
@@ -48,6 +48,23 @@ the command might look like:
 
 [tox]: https://tox.readthedocs.org/
 
+Build the image locally
+-----------------------
+
+You are also welcome to build and tweak the testing image locally using
+provided Dockerfiles.
+
+To build Pythonista Docker image (by default based on **Debian**):
+
+```
+docker build -t pythonista-deb
+```
+
+To build Pythonista Docker image based on **CentOS** use `Dockerfile.centos`:
+
+```
+docker build -f Dockerfile.centos -t pythonista-yum
+```
 
 Feedback
 --------

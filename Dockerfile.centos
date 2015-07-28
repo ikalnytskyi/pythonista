@@ -1,14 +1,14 @@
 #######################################################################
-# Dockerfile for building Pythonista docker image.
+# Dockerfile for building Pythonista docker image based on CentOS.
 #
-# Copyright (c) 2014, Igor Kalnitsky <igor@kalnitsky.org>
+# Copyright (c) 2015, Ruslan Kiyanchuk <ruslan.kiianchuk@gmail.org>
 # Licensed under 3-clause BSD
 #
 # See https://github.com/ikalnitsky/pythonista for details.
 #######################################################################
 
-FROM        debian:jessie
-MAINTAINER  Igor Kalnitsky <igor@kalnitsky.org>
+FROM        centos:7
+MAINTAINER  Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 
 ADD get-python.sh  /var/tmp/get-python.sh
 
