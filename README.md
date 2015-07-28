@@ -13,7 +13,7 @@ handle it, since Debian Jessie doesn't have Python 2.6 in its repo.
 About Image
 -----------
 
-* **OS** - Debian Jessie (Testing) or CentOS 7
+* **OS** - Debian 8 (Jessie) or CentOS 7
 * **CPython** - 2.6.9 / 2.7.9 / 3.2.6 / 3.3.6 / 3.4.3
 * **PyPy** - PyPy 2.6.0 (based on 2.7.9) / PyPy3 2.4.0 (based on 3.2.5)
 * **Env** - pip, virtualenv, tox

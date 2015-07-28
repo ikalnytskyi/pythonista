@@ -103,8 +103,8 @@ case ${OSNAME} in
         apt-get -y install "${@}"
         ;;
     "centos")
-        yum -y install epel-release
         yum update
+        yum -y install epel-release
         yum -y groupinstall development
         yum -y install "${@}"
         ;;
