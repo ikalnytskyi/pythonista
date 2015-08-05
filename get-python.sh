@@ -107,7 +107,7 @@ case ${OSNAME} in
         apt-get -y install "${@}"
         ;;
     "centos")
-        yum update
+        yum upgrade -y
         yum -y install epel-release
         yum -y groupinstall development
         yum -y install "${@}"
