@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  - DOCKERFILE=Dockerfile
+  - DOCKERFILE=Dockerfile.centos
+
+before_install:
+  - docker build -t ikalnitsky/pythonista -f $DOCKERFILE .
+
+script:
+  - docker run -v `pwd`:/src ikalnitsky/pythonista python2.7 /src/tests.py
+
+notifications:
+  email: false
