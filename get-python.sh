@@ -31,8 +31,6 @@ case ${OSNAME} in
             "libssl1.0.0"
             "libexpat1"
             "libffi6"
-            "python-dev"
-            "python3-dev"
         )
 
         BUILD_REQUIREMENTS=(
@@ -56,8 +54,6 @@ case ${OSNAME} in
             "expat"
             "libffi"
             "python-pip"
-            "python-devel"
-            "python3-devel"
         )
 
         BUILD_REQUIREMENTS=(
