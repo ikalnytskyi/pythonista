@@ -48,8 +48,11 @@ class TestPyVersions(unittest.TestCase):
     def test_py34(self):
         self.assertEqual('3.4.3', self._get_py_version('python3.4'))
 
+    def test_py35(self):
+        self.assertEqual('3.5.0', self._get_py_version('python3.5'))
+
     def test_pypy(self):
-        self.assertEqual('2.7.9', self._get_py_version('pypy'))
+        self.assertEqual('2.7.10', self._get_py_version('pypy'))
 
     def test_pypy3(self):
         self.assertEqual('3.2.5', self._get_py_version('pypy3'))
@@ -58,7 +61,7 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('2.7.10', self._get_py_version('python2'))
 
     def test_py3_default(self):
-        self.assertEqual('3.4.3', self._get_py_version('python3'))
+        self.assertEqual('3.5.0', self._get_py_version('python3'))
 
 
 if __name__ == '__main__':
