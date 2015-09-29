@@ -64,5 +64,40 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.5.0', self._get_py_version('python3'))
 
 
+class TestSqliteSupport(unittest.TestCase):
+
+    _py_sqlite = 'import sqlite3'
+
+    def _check_sqlite3_support(self, py_interpreter):
+        retcode = subprocess.call(
+            "{0} -c '{1}'".format(py_interpreter, self._py_sqlite),
+            shell=True)
+        return retcode
+
+    def test_py26(self):
+        self.assertEqual(0, self._check_sqlite3_support('python2.6'))
+
+    def test_py27(self):
+        self.assertEqual(0, self._check_sqlite3_support('python2.7'))
+
+    def test_py32(self):
+        self.assertEqual(0, self._check_sqlite3_support('python3.2'))
+
+    def test_py33(self):
+        self.assertEqual(0, self._check_sqlite3_support('python3.3'))
+
+    def test_py34(self):
+        self.assertEqual(0, self._check_sqlite3_support('python3.4'))
+
+    def test_py35(self):
+        self.assertEqual(0, self._check_sqlite3_support('python3.5'))
+
+    def test_pypy(self):
+        self.assertEqual(0, self._check_sqlite3_support('pypy'))
+
+    def test_pypy3(self):
+        self.assertEqual(0, self._check_sqlite3_support('pypy3'))
+
+
 if __name__ == '__main__':
     unittest.main()
