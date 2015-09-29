@@ -24,6 +24,13 @@ import subprocess
 
 
 class TestPyVersions(unittest.TestCase):
+    """
+    Ensure that system has expected Python interpreters and proper defaults.
+
+    Just run consequently supported Python interpreters, print their version
+    and check that they are expected. Test fails if one of interpreters is
+    missed or has unexpected minor version.
+    """
 
     _py_ver = 'import sys; sys.stdout.write("%d.%d.%d" % sys.version_info[:3])'
 
@@ -64,40 +71,71 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.5.0', self._get_py_version('python3'))
 
 
-class TestSqliteSupport(unittest.TestCase):
+class _TestModuleSupport(unittest.TestCase):
+    """
+    A base class for testing module support in Python interpreters.
 
-    _py_sqlite = 'import sqlite3'
+    In order to test that Python interpreter is built with some module
+    support just inherit this class and override its properties.
+    """
 
-    def _check_sqlite3_support(self, py_interpreter):
+    py_code = None
+
+    def _execute_code(self, py_interpreter):
         retcode = subprocess.call(
-            "{0} -c '{1}'".format(py_interpreter, self._py_sqlite),
+            "{0} -c '{1}'".format(py_interpreter, self.py_code),
             shell=True)
         return retcode
 
     def test_py26(self):
-        self.assertEqual(0, self._check_sqlite3_support('python2.6'))
+        self.assertEqual(0, self._execute_code('python2.6'))
 
     def test_py27(self):
-        self.assertEqual(0, self._check_sqlite3_support('python2.7'))
+        self.assertEqual(0, self._execute_code('python2.7'))
 
     def test_py32(self):
-        self.assertEqual(0, self._check_sqlite3_support('python3.2'))
+        self.assertEqual(0, self._execute_code('python3.2'))
 
     def test_py33(self):
-        self.assertEqual(0, self._check_sqlite3_support('python3.3'))
+        self.assertEqual(0, self._execute_code('python3.3'))
 
     def test_py34(self):
-        self.assertEqual(0, self._check_sqlite3_support('python3.4'))
+        self.assertEqual(0, self._execute_code('python3.4'))
 
     def test_py35(self):
-        self.assertEqual(0, self._check_sqlite3_support('python3.5'))
+        self.assertEqual(0, self._execute_code('python3.5'))
 
     def test_pypy(self):
-        self.assertEqual(0, self._check_sqlite3_support('pypy'))
+        self.assertEqual(0, self._execute_code('pypy'))
 
     def test_pypy3(self):
-        self.assertEqual(0, self._check_sqlite3_support('pypy3'))
+        self.assertEqual(0, self._execute_code('pypy3'))
+
+
+class TestSqlite3Support(_TestModuleSupport):
+    """
+    Check that Python interpreters are built with sqlite3 support.
+
+    It requires to have libsqlite3-dev installed to build CPython with
+    sqlite3 support.
+    """
+
+    py_code = 'import sqlite3'
+
+
+class TestZlibSupport(_TestModuleSupport):
+    """
+    Check that Python interpreters are built with zlib1 support.
+
+    It requires to have zlib1g-dev installed to build CPython with
+    zlib/gzip support.
+    """
+
+    py_code = 'import gzip; import zlib'
 
 
 if __name__ == '__main__':
+    # we aren't interested in running tests of base test cases, so just
+    # remove it from the scope since it's simplest that we can do
+    del _TestModuleSupport
     unittest.main()
