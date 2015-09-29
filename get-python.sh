@@ -78,12 +78,12 @@ esac
 # A sorf of entry point - download, compile and install given Pythons.
 #
 function main {
-    install_packages "${REQUIREMENTS[@]}"
-    install_packages "${BUILD_REQUIREMENTS[@]}"
-    install_pyenv
+    install_packages "${REQUIREMENTS[@]}"           || exit 1
+    install_packages "${BUILD_REQUIREMENTS[@]}"     || exit 1
+    install_pyenv                                   || exit 1
 
     for pyversion in "${@}"; do
-        install_python "$pyversion"
+        install_python "$pyversion"                 || exit 1
     done
 
     remove_packages "${BUILD_REQUIREMENTS[@]}"
@@ -129,8 +129,8 @@ function install_pyenv {
 # $1 - a Python interpreter version
 #
 function install_python {
-    CFLAGS="-g -O2" python-build "$1" "/opt/python/$1"
     echo "export PATH=\"\$PATH:/opt/python/$1/bin/\"" >> /etc/profile.d/pythonista.sh
+    CFLAGS="-g -O2" python-build "$1" "/opt/python/$1"
 }
 
 #
