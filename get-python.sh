@@ -130,7 +130,7 @@ function install_pyenv {
 #
 function install_python {
     echo "export PATH=\"\$PATH:/opt/python/$1/bin/\"" >> /etc/profile.d/pythonista.sh
-    CFLAGS="-g -O2" python-build "$1" "/opt/python/$1"
+    PYTHON_CONFIGURE_OPTS="--enable-shared" CFLAGS="-g -O2" python-build "$1" "/opt/python/$1"
 }
 
 #

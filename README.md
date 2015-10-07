@@ -57,13 +57,13 @@ provided Dockerfiles.
 To build Pythonista Docker image (by default based on **Debian**):
 
 ```
-docker build -t pythonista-deb
+docker build -t pythonista-deb .
 ```
 
 To build Pythonista Docker image based on **CentOS** use `Dockerfile.centos`:
 
 ```
-docker build -f Dockerfile.centos -t pythonista-yum
+docker build -f Dockerfile.centos -t pythonista-yum .
 ```
 
 Feedback
