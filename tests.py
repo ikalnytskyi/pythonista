@@ -46,9 +46,6 @@ class TestPyVersions(unittest.TestCase):
     def test_py27(self):
         self.assertEqual('2.7.10', self._get_py_version('python2.7'))
 
-    def test_py32(self):
-        self.assertEqual('3.2.6', self._get_py_version('python3.2'))
-
     def test_py33(self):
         self.assertEqual('3.3.6', self._get_py_version('python3.3'))
 
@@ -92,9 +89,6 @@ class _TestModuleSupport(unittest.TestCase):
 
     def test_py27(self):
         self.assertEqual(0, self._execute_code('python2.7'))
-
-    def test_py32(self):
-        self.assertEqual(0, self._execute_code('python3.2'))
 
     def test_py33(self):
         self.assertEqual(0, self._execute_code('python3.3'))

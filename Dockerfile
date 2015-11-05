@@ -20,7 +20,6 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
      "2.7.10", \
      "3.5.0", \
      "2.6.9", \
-     "3.2.6", \
      "3.3.6", \
      "3.4.3", \
      "pypy-portable-2.6.1", \
@@ -34,7 +33,6 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 ENV PYTHONBIN $PYTHONBIN:/opt/python/2.7.10/bin
 ENV PYTHONBIN $PYTHONBIN:/opt/python/3.5.0/bin
 ENV PYTHONBIN $PYTHONBIN:/opt/python/2.6.9/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/3.2.6/bin
 ENV PYTHONBIN $PYTHONBIN:/opt/python/3.3.6/bin
 ENV PYTHONBIN $PYTHONBIN:/opt/python/3.4.3/bin
 ENV PYTHONBIN $PYTHONBIN:/opt/python/pypy-portable-2.6.1/bin
