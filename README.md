@@ -15,7 +15,7 @@ About Image
 
 * **OS** - Debian 8 (Jessie) or CentOS 7
 * **CPython** - 2.6.9 / 2.7.10 / 3.3.6 / 3.4.3 / 3.5.0
-* **PyPy** - PyPy 2.6.1 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
+* **PyPy** - PyPy 4.0 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
 * **Env** - pip, virtualenv, tox
 
 
