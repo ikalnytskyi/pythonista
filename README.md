@@ -14,9 +14,8 @@ About Image
 -----------
 
 * **OS** - Debian 9 Stretch (testing) or CentOS 7
-* **CPython** - 2.6.9 / 2.7.10 / 3.3.6 / 3.4.3 / 3.5.0
-* **PyPy** - PyPy 4.0 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
-* **Env** - pip, virtualenv, tox
+* **CPython** - 2.6.9 / 2.7.11 / 3.3.6 / 3.4.4 / 3.5.1
+* **PyPy** - PyPy 4.0.1 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
 
 
 How To Use?
@@ -48,6 +47,7 @@ the command might look like:
 
 [tox]: https://tox.readthedocs.org/
 
+
 Build the image locally
 -----------------------
 
@@ -56,15 +56,12 @@ provided Dockerfiles.
 
 To build Pythonista Docker image (by default based on **Debian**):
 
-```
-docker build -t pythonista-deb .
-```
+    $ [sudo] docker build -t pythonista-deb .
 
 To build Pythonista Docker image based on **CentOS** use `Dockerfile.centos`:
 
-```
-docker build -f Dockerfile.centos -t pythonista-yum .
-```
+    $ [sudo] docker build -f Dockerfile.centos -t pythonista-yum .
+
 
 Feedback
 --------
