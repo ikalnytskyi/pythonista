@@ -7,7 +7,7 @@
 # See https://github.com/ikalnitsky/pythonista for details.
 #######################################################################
 
-FROM        debian:jessie
+FROM        debian:stretch
 MAINTAINER  Igor Kalnitsky <igor@kalnitsky.org>
 
 ADD get-python.sh  /var/tmp/get-python.sh

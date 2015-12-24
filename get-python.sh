@@ -28,7 +28,7 @@ case ${OSNAME} in
     "debian")
         REQUIREMENTS=(
             "libsqlite3-0"
-            "libssl1.0.0"
+            "libssl1.0.2"
             "libexpat1"
             "libffi6"
         )
