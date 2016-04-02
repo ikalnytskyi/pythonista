@@ -30,14 +30,17 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 # to setup it directly in Dockerfile, but it's awful when the
 # PATH should be changed dynamically based on some third-party
 # input. But I have no choice... :(
-ENV PYTHONBIN $PYTHONBIN:/opt/python/2.7.11/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/3.5.1/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/2.6.9/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/3.3.6/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/3.4.4/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/pypy-portable-4.0.1/bin
-ENV PYTHONBIN $PYTHONBIN:/opt/python/pypy3-portable-2.4/bin
-ENV PATH $PYTHONBIN:$PATH
+#
+# Also, I use one ENV statement in order to avoid creation of
+# unneccessary extra Docker layers.
+ENV PATH /opt/python/2.7.11/bin\
+:/opt/python/3.5.1/bin\
+:/opt/python/2.6.9/bin\
+:/opt/python/3.3.6/bin\
+:/opt/python/3.4.4/bin\
+:/opt/python/pypy-portable-4.0.1/bin\
+:/opt/python/pypy3-portable-2.4/bin\
+:$PATH
 
 # Install first-class tools
 RUN pip install tox virtualenv
