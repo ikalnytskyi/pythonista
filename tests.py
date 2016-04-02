@@ -40,9 +40,6 @@ class TestPyVersions(unittest.TestCase):
             shell=True)
         return stdout.decode('ascii')
 
-    def test_py26(self):
-        self.assertEqual('2.6.9', self._get_py_version('python2.6'))
-
     def test_py27(self):
         self.assertEqual('2.7.11', self._get_py_version('python2.7'))
 
@@ -83,9 +80,6 @@ class _TestModuleSupport(unittest.TestCase):
             "{0} -c '{1}'".format(py_interpreter, self.py_code),
             shell=True)
         return retcode
-
-    def test_py26(self):
-        self.assertEqual(0, self._execute_code('python2.6'))
 
     def test_py27(self):
         self.assertEqual(0, self._execute_code('python2.7'))

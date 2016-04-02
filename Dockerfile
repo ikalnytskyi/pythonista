@@ -19,7 +19,6 @@ ADD get-python.sh  /var/tmp/get-python.sh
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
      "2.7.11", \
      "3.5.1", \
-     "2.6.9", \
      "3.3.6", \
      "3.4.4", \
      "pypy-portable-4.0.1", \
@@ -35,7 +34,6 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 # unneccessary extra Docker layers.
 ENV PATH /opt/python/2.7.11/bin\
 :/opt/python/3.5.1/bin\
-:/opt/python/2.6.9/bin\
 :/opt/python/3.3.6/bin\
 :/opt/python/3.4.4/bin\
 :/opt/python/pypy-portable-4.0.1/bin\
