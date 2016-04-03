@@ -19,6 +19,7 @@
 
 from __future__ import unicode_literals
 
+import re
 import unittest
 import subprocess
 
@@ -33,12 +34,22 @@ class TestPyVersions(unittest.TestCase):
     """
 
     _py_ver = 'import sys; sys.stdout.write("%d.%d.%d" % sys.version_info[:3])'
+    _pypy_ver = re.compile('PyPy\s*(\d+\.\d+\.\d+)')
 
     def _get_py_version(self, py_interpreter):
         stdout = subprocess.check_output(
             "{0} -c '{1}'".format(py_interpreter, self._py_ver),
             shell=True)
         return stdout.decode('ascii')
+
+    def _get_pypy_version(self, py_interpreter):
+        # --version prints to stderr, so we need to redirect it to stdout
+        stdout = subprocess.check_output(
+            "{0} --version".format(py_interpreter),
+            stderr=subprocess.STDOUT,
+            shell=True)
+
+        return self._pypy_ver.search(stdout).group(1)
 
     def test_py27(self):
         self.assertEqual('2.7.11', self._get_py_version('python2.7'))
@@ -53,9 +64,11 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.5.1', self._get_py_version('python3.5'))
 
     def test_pypy(self):
+        self.assertEqual('5.0.1', self._get_pypy_version('pypy'))
         self.assertEqual('2.7.10', self._get_py_version('pypy'))
 
     def test_pypy3(self):
+        self.assertEqual('2.4.0', self._get_pypy_version('pypy3'))
         self.assertEqual('3.2.5', self._get_py_version('pypy3'))
 
     def test_py2_default(self):
@@ -65,7 +78,7 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.5.1', self._get_py_version('python3'))
 
 
-class _TestModuleSupport(unittest.TestCase):
+class _TestModuleSupport(object):
     """
     A base class for testing module support in Python interpreters.
 
@@ -100,7 +113,7 @@ class _TestModuleSupport(unittest.TestCase):
         self.assertEqual(0, self._execute_code('pypy3'))
 
 
-class TestSqlite3Support(_TestModuleSupport):
+class TestSqlite3Support(_TestModuleSupport, unittest.TestCase):
     """
     Check that Python interpreters are built with sqlite3 support.
 
@@ -111,7 +124,7 @@ class TestSqlite3Support(_TestModuleSupport):
     py_code = 'import sqlite3'
 
 
-class TestZlibSupport(_TestModuleSupport):
+class TestZlibSupport(_TestModuleSupport, unittest.TestCase):
     """
     Check that Python interpreters are built with zlib1 support.
 
@@ -123,7 +136,4 @@ class TestZlibSupport(_TestModuleSupport):
 
 
 if __name__ == '__main__':
-    # we aren't interested in running tests of base test cases, so just
-    # remove it from the scope since it's simplest that we can do
-    del _TestModuleSupport
     unittest.main()
