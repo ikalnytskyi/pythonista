@@ -64,7 +64,7 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.5.1', self._get_py_version('python3.5'))
 
     def test_pypy(self):
-        self.assertEqual('5.0.1', self._get_pypy_version('pypy'))
+        self.assertEqual('5.1.1', self._get_pypy_version('pypy'))
         self.assertEqual('2.7.10', self._get_py_version('pypy'))
 
     def test_pypy3(self):
