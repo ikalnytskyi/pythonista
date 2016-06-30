@@ -17,11 +17,11 @@ ADD get-python.sh  /var/tmp/get-python.sh
 # NOTE: We're going to install 2.7 and 3.5 first because we want to
 #       make more rational defaults for pip and python.
 RUN ["/bin/bash", "/var/tmp/get-python.sh", \
-     "2.7.11", \
-     "3.5.1", \
+     "2.7.12", \
+     "3.5.2", \
      "3.3.6", \
-     "3.4.4", \
-     "pypy-portable-5.1.1", \
+     "3.4.5", \
+     "pypy-portable-5.3.1", \
      "pypy3-portable-2.4"]
 
 # Unfortunately, there's no way (at least I don't know one) to
@@ -32,11 +32,11 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
 #
 # Also, I use one ENV statement in order to avoid creation of
 # unneccessary extra Docker layers.
-ENV PATH /opt/python/2.7.11/bin\
-:/opt/python/3.5.1/bin\
+ENV PATH /opt/python/2.7.12/bin\
+:/opt/python/3.5.2/bin\
 :/opt/python/3.3.6/bin\
-:/opt/python/3.4.4/bin\
-:/opt/python/pypy-portable-5.1.1/bin\
+:/opt/python/3.4.5/bin\
+:/opt/python/pypy-portable-5.3.1/bin\
 :/opt/python/pypy3-portable-2.4/bin\
 :$PATH
 

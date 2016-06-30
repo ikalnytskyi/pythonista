@@ -52,19 +52,19 @@ class TestPyVersions(unittest.TestCase):
         return self._pypy_ver.search(stdout).group(1)
 
     def test_py27(self):
-        self.assertEqual('2.7.11', self._get_py_version('python2.7'))
+        self.assertEqual('2.7.12', self._get_py_version('python2.7'))
 
     def test_py33(self):
         self.assertEqual('3.3.6', self._get_py_version('python3.3'))
 
     def test_py34(self):
-        self.assertEqual('3.4.4', self._get_py_version('python3.4'))
+        self.assertEqual('3.4.5', self._get_py_version('python3.4'))
 
     def test_py35(self):
-        self.assertEqual('3.5.1', self._get_py_version('python3.5'))
+        self.assertEqual('3.5.2', self._get_py_version('python3.5'))
 
     def test_pypy(self):
-        self.assertEqual('5.1.1', self._get_pypy_version('pypy'))
+        self.assertEqual('5.3.1', self._get_pypy_version('pypy'))
         self.assertEqual('2.7.10', self._get_py_version('pypy'))
 
     def test_pypy3(self):
@@ -72,10 +72,10 @@ class TestPyVersions(unittest.TestCase):
         self.assertEqual('3.2.5', self._get_py_version('pypy3'))
 
     def test_py2_default(self):
-        self.assertEqual('2.7.11', self._get_py_version('python2'))
+        self.assertEqual('2.7.12', self._get_py_version('python2'))
 
     def test_py3_default(self):
-        self.assertEqual('3.5.1', self._get_py_version('python3'))
+        self.assertEqual('3.5.2', self._get_py_version('python3'))
 
 
 class _TestModuleSupport(object):

@@ -14,8 +14,8 @@ About Image
 -----------
 
 * **OS** - Debian 9 Stretch (testing) or CentOS 7
-* **CPython** - 2.7.11 / 3.3.6 / 3.4.4 / 3.5.1
-* **PyPy** - PyPy 5.1.1 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
+* **CPython** - 2.7.12 / 3.3.6 / 3.4.5 / 3.5.2
+* **PyPy** - PyPy 5.3.1 (based on 2.7.10) / PyPy3 2.4.0 (based on 3.2.5)
 
 
 How To Use?
