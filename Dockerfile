@@ -21,7 +21,7 @@ RUN ["/bin/bash", "/var/tmp/get-python.sh", \
      "3.5.2", \
      "3.3.6", \
      "3.4.5", \
-     "pypy-portable-5.3.1", \
+     "pypy-portable-5.4.1", \
      "pypy3-portable-2.4"]
 
 # Unfortunately, there's no way (at least I don't know one) to
@@ -36,7 +36,7 @@ ENV PATH /opt/python/2.7.12/bin\
 :/opt/python/3.5.2/bin\
 :/opt/python/3.3.6/bin\
 :/opt/python/3.4.5/bin\
-:/opt/python/pypy-portable-5.3.1/bin\
+:/opt/python/pypy-portable-5.4.1/bin\
 :/opt/python/pypy3-portable-2.4/bin\
 :$PATH
 
