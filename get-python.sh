@@ -159,6 +159,7 @@ function clean_packages {
         "debian")
             apt-get autoclean
             apt-get clean
+            rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
             ;;
         "centos")
             yum -y clean all
